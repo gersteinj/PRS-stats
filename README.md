@@ -9,8 +9,8 @@ Ignore "extract-and-score" for now. I figured out where I was screwing up but ha
 ### Requirements
 
 * Python 3. Not making it compatible with Python 2 because I don't want to.
-* Pandas. Because handling dataframes is more convenient than handling CSVs directly.
-* If you don't want to/can't install Python and Pandas, [PythonAnywhere](http://www.pythonanywhere.com) will work. It has the necessary stuff installed, but you will need an internet connection
+* Pandas.
+* If you don't want to install Python and Pandas, [PythonAnywhere](http://www.pythonanywhere.com) will work. It has the necessary stuff installed, but you will need an internet connection
 
 ### Setup
 
