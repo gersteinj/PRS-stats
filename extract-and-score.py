@@ -1,7 +1,24 @@
 import pandas as pd
 from bs4 import BeautifulSoup
 
-race_points = {1:50, 2:40, 3:36, 4:32, 5:30, 6:28, 7:26, 8:24, 9:22, 10:20, 11:18, 12:16, 13:14, 14:12, 15:10, 16:8, 17:6, 18:4, 19:2, 20:1}
+race_points = {
+    1:75,
+    2:64,
+    3:54,
+    4:45,
+    5:37,
+    6:30,
+    7:24,
+    8:19,
+    9:15,
+    10:12,
+    11:10,
+    12:18,
+    13:6,
+    14:4,
+    15:2,
+    16:1
+    }
 
 def extract_data(html_file, race_key, export_csv=False):
     """Extract data from HTML export of race software and return Pandas dataframe"""
@@ -21,11 +38,14 @@ def extract_data(html_file, race_key, export_csv=False):
     return df
 
 
-def combine_tables(*args, event_key='unnamed', display=False):
-    df = pd.concat(args, axis=1)
+def combine_tables(list_of_tables, event_key='unnamed', display=False):
+    combined_tables = pd.DataFrame()
+    for table in list_of_tables:
+        combined_tables = pd.concat([combined_tables, pd.DataFrame.from_csv(table)], axis=1)
     if display:
-        print(df)
+        print(combined_tables)
     df.to_csv(f'{event_key}-race-results.csv')
+    return combined_tables
 
 
-combine_tables(extract_data('sample-data.html', 'a'), extract_data('sample-data.html', 'b'), event_key='isitworkingyet')
+combine_tables([extract_data('sample-data.html', 'a'), extract_data('sample-data.html', 'b')], event_key='test weekend')
